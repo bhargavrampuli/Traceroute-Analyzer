@@ -1,0 +1,40 @@
+import json
+
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+logfile = 'errorlog.log'
+
+def LastNlines(fname, N):
+        # opening file using with() method
+            # so that file get closed
+                # after completing work
+                    try:
+                                with open(fname) as file:
+                                                # loop to read iterate
+                                                            # last n lines and print it
+                                                                        return file.readlines()[-N:]
+                                                                        except Exception as e:
+                                                                                    with open(logfile) as file:
+                                                                                                    file.writelines("##### Error Readng File #####"+str(e))
+                                                                                                        return []
+
+
+                                                                                                    def json_load(json_count):
+                                                                                                            result_json = {}
+                                                                                                                LastNlinesnow=LastNlines("traceroute_output.json", json_count)
+                                                                                                                    for i in range(len(LastNlinesnow)):
+                                                                                                                                result_json[str(i+1)] = json.loads(LastNlinesnow[i])
+
+                                                                                                                                    return result_json
+
+
+                                                                                                                                @app.route("/pastfive", methods=['GET'])
+                                                                                                                                def pastfive():
+                                                                                                                                        result_json = json_load(5)
+                                                                                                                                            return jsonify(result_json)
+
+
+                                                                                                                                        if __name__ == '__main__':
+                                                                                                                                                app.run(debug=True)
+

@@ -1,0 +1,24 @@
+.leaflet-container{
+  width: 50vw;
+  height: 40vw;
+  border: 3px solid #73AD21;
+  right:0;
+  margin-right: 30px;
+  margin-top: 2%;
+}
+#heading{
+  margin-left: 20px;
+}
+#g_heading{
+  margin-left: 40px;
+  margin-top: 20px;
+}
+#chartwrapper{
+ width: 10vw;
+ margin-left: 50px;
+ flex: 1;
+}
+#mapchartwrapper{
+  width: 100vw;
+  display: flex;
+ }
